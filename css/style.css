@@ -1,0 +1,77 @@
+body {
+    font-family: 'Cabin Condensed', sans-serif;
+    width: 50%;
+    margin: auto;
+    text-align: center;
+    padding-top: 150px;
+    font-size: 16px;
+    line-height: 24px;
+}
+
+h1, h2, h3 {
+    line-height: auto;
+}
+
+input[type=text]:focus {
+    outline: solid 2px rgba(0,0,0, 0.2);
+}
+
+input[type=text] {
+    padding: 5px;
+}
+
+button {
+    padding-top: 2px;
+}
+
+ol {
+    margin-top: 0;
+    padding-top: 0;
+}
+
+.pure-grid {
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -o-box-sizing: border-box;
+    -ms-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.pure-grid:first-child {
+    padding-right: 5px;
+}
+
+.pure-grid:last-child {
+    padding-left: 5px;
+}
+
+.schools a {
+    color: #4d4dff;
+    text-decoration: none;
+    border-bottom: 1px dotted #4d4dff;
+    transition: all 0.3s;
+}
+
+.schools a:hover {
+    color: #0000b3;
+    border-bottom-color: #0000b3;
+}
+
+.schools a, .schools li {
+    padding: 5px;
+}
+
+@media all and (max-width:800px){
+    .index {
+        padding-top: 60px;
+    }
+    
+    .schools li {
+        line-height: 30px;
+    }
+    
+    .pure-grid:first-child, .pure-grid:last-child {
+        padding-left: 0;
+        padding-right: 0;
+    }
+}

@@ -1,0 +1,64 @@
+.navbar div:nth-child(2) {
+    margin: 0 auto;
+    position: relative;
+}
+.navbar div:nth-child(1) {
+    position: absolute;
+    top: 0;
+}
+.navbar a:not(#logo-link) {
+    text-decoration: none;
+    padding: 15px;
+    background-color: black;
+    color: white;
+}
+.navbar {
+    padding-top: 15px;
+    padding-bottom: 14px;
+    background-color: black;
+    white-space: nowrap;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+}
+.navbar a:not(#logo-link):hover {
+    background-color: white;
+    color: black;
+}
+.navbar a:not(#logo-link):not(:nth-child(2)) {
+    margin-left: -8px;
+}
+.container {
+    background: white;
+    width: 400px;
+    margin: 0 auto;
+}
+.hidden {
+    display: none;
+}
+a {
+    cursor: pointer;
+}
+.navbar .hide {
+    right: 0;
+    position: absolute;
+}
+
+a:not(#logo-link) {
+    z-index: 0;
+}
+
+#logo-link {
+    z-index: 100;
+}
+
+body {
+    padding-top: 60px;
+    text-align: left;
+}
+
+h1 {
+    text-align: center;
+}
