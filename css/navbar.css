@@ -27,7 +27,7 @@
     background-color: white;
     color: black;
 }
-.navbar a:not(#logo-link):not(:nth-child(2)) {
+.navbar a:not(#logo-link):not(:nth-child(2)):not(.hidden) {
     margin-left: -8px;
 }
 .container {
@@ -41,24 +41,20 @@
 a {
     cursor: pointer;
 }
-.navbar .hide {
+.navbar a.hide {
     right: 0;
     position: absolute;
 }
-
 a:not(#logo-link) {
     z-index: 0;
 }
-
 #logo-link {
     z-index: 100;
 }
-
 body {
     padding-top: 60px;
     text-align: left;
 }
-
 h1 {
     text-align: center;
 }
