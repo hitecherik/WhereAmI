@@ -66,17 +66,17 @@ ol li:last-child:before {
 .pure-grid:last-child {
     padding-left: 5px
 }
-.schools a {
+#ofsted a {
     color: #4d4dff;
     text-decoration: none;
     border-bottom: 1px dotted #4d4dff;
     transition: all 0.3s;
 }
-.schools a:hover {
+#ofsted a:hover {
     color: #0000b3;
     border-bottom-color: #0000b3;
 }
-.schools a, .schools li {
+#ofsted a, .schools li {
     padding: 5px
 }
 @media all and (max-width:800px) { 
