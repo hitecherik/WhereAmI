@@ -1,6 +1,6 @@
 <?php
     if(!$_COOKIE['ie-view']) {
-        $inIE9 = "<script src='js/ie-script-alert.js'></script>";
+        $inIE9 = "<script type=\"text/javascript\">alert(\"You are currently using an out of date browser which means that some of the functionalities of this site will not be available. Please upgrade to a more modern browser, such as Mozilla Firefox, Google Chrome or Opera.\")</script>";
         setcookie('ie-view',true);
     }
 ?>
@@ -29,8 +29,7 @@
         <div class="wrap">
             <p><img src="web-logo.png" alt=""></p>
             <h1>Where Am I?</h1>
-            <p class="error-p invalid">Error: Invalid postcode</p>
-            <p class="error-p surrey">Error: Postcode not in Surrey</p>
+            <p class="error-p invalid">Whoops! You might have mistyped the postcode. Please try again.</p>
             <form id="postcode-form" class="pure-form" method="get" action="info.php">
                 <fieldset>
                     <input name="postcode" id="postcode-input" type="text" placeholder="Enter your postcode!" maxlength="8">
@@ -39,35 +38,11 @@
                     <p class="geo-p"><button type="button" class="pure-button" id="location">Use my location!</button></p>
                 </fieldset>
             </form>
+            <!--[if IE]>
+                <p class="ie-message">You are currently using an out of date browser which means that some of the functionalities of this site will not be available. Please upgrade to a more modern browser, such as Mozilla Firefox, Google Chrome or Opera.</p>
+            <![endif]-->
         </div>
         
-        <script>        
-            function useLocation(lat,lng){
-                $.getJSON("http://www.uk-postcodes.com/latlng/" + lat + "," + lng + ".json?callback=?", function(data){
-                    var postcode = data.postcode.split("  ")[0] + "+" + data.postcode.split("  ")[1];
-                    window.location = "http://where-am-i.eu5.org/info.php?postcode=" + postcode;
-                });
-            }
-        
-            $("#location").on("click", function(){
-                navigator.geolocation.getCurrentPosition(function(position) {
-                    $(".loading-gif").show();
-                    var latitude = position.coords.latitude,
-                        longitude = position.coords.longitude;
-                
-                    // console.log("Latitude: " + latitude + ", Longitude: " + longitude);
-                    useLocation(latitude, longitude)
-                });
-            });
-            
-            $("#postcode-form").on("submit", function(e){
-                var postcode = $("#postcode-input").val();
-                if(postcode.indexOf(" ")===-1){
-                    // alert("Invalid postocode. Please enter a valid one.");
-                    $(".invalid").show();
-                    e.preventDefault();
-                }
-            })
-        </script>
+        <script src="js/index.js"></script>
     </body>
 </html>

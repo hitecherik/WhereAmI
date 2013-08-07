@@ -31,7 +31,7 @@ input[type=text] {
 .loading-gif, .error-p {
     display: none;
 }
-.error-p {
+.error-p, .ie-message {
     color: #b94a48;
 }
 .geo-p {

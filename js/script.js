@@ -172,5 +172,5 @@ $.getJSON("http://www.uk-postcodes.com/postcode/" + postcode.split(" ")[0] + pos
         })
         
         $("#school img").attr("src", imgsrc)
-    })
+    });
 });

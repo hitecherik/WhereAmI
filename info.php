@@ -66,7 +66,7 @@
                     <img src="http://placehold.it/600x300&text=Loading..." alt="">
                 </div>
                 <div class="pure-u-1-2 pure-grid" id="crime">
-                    <a name='crime'><h3>Nearest crimes</h3></a>
+                    <a name='crime'><h3>Nearest street-level crimes</h3></a>
                     <img src="<?php echo $imgsrc; ?>" alt="">
                 </div>
             </div>
