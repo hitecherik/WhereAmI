@@ -47,7 +47,7 @@
     </head>
     <body>
         <div class='navbar'>
-            <div class='logo'><a href="index.html" id="logo-link"><img src='navbar-logo.png' alt='' width="48px" id="logo-img" /></a></div>
+            <div class='logo'><a href="index.php" id="logo-link"><img src='navbar-logo.png' alt='' width="48px" id="logo-img" /></a></div>
             <div align='center'>
                 <a class='hidden'>Menu</a>
                 <a href='#fire'>Fires</a>
@@ -85,45 +85,5 @@
         <!-- scripts -->
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
         <script src='js/script.js'></script>
-        <script>
-            $.getJSON("http://www.uk-postcodes.com/postcode/" + postcode.split(" ")[0] + postcode.split(" ")[1] + ".json?callback=?", function(data){
-                var latitude = data.geo.lat,
-                    longitude = data.geo.lng,
-                    easting = data.geo.easting,
-                    northing = data.geo.northing;
-                
-                //fire data
-                $.getJSON("http://www.surreyopendata.org/resource/avf7-rxfg.json", function(_data){
-                    console.log(_data);
-                    
-                    var imgsrc = "http://maps.googleapis.com/maps/api/staticmap?center=" + encodeURIComponent(postcode) + "&sensor=false&zoom=10&size=600x300&maptype=roadmap&markers=color:blue%7Clabel:P%7C" + encodeURIComponent(postcode) + "&markers=color:red%7Clabel:F";
-                    
-                    for(var i = 0; i<50; i++){
-                        imgsrc += "%7C" + _data[i].location_1.latitude + "," + _data[i].location_1.longitude;
-                    }
-                    
-                    $("#fire img").attr("src", imgsrc)
-                });
-                
-                //school data
-                $.getJSON("http://www.surreyopendata.org/resource/2ami-xnhh.json", function(_data){
-                    console.log(_data);
-                    
-                    var imgsrc = "http://maps.googleapis.com/maps/api/staticmap?center=" + encodeURIComponent(postcode) + "&sensor=false&zoom=12&size=600x300&maptype=roadmap&markers=color:blue%7Clabel:P%7C" + encodeURIComponent(postcode) + "&markers=color:green%7Clabel:S";
-                    
-                    for(var i = 0; i < _data.length; i++){
-                        var sch = _data[i],
-                            ol = $("#ofsted ol");
-                        
-                        if(sch.easting.substring(0,2) === easting.substring(0,2) && sch.northing.substring(0,2) === northing.substring(0,2)){
-                            imgsrc += "%7C" + sch.location_1.latitude + "," + sch.location_1.longitude;
-                            ol.append("<li><a href='http://www.ofsted.gov.uk/inspection-reports/find-inspection-report/provider/ELS/" + sch.urn + "' target='_blank'>" + sch.fullname + "</a></li>")    
-                        }
-                    }
-                    
-                    $("#school img").attr("src", imgsrc)
-                })
-            })
-        </script>
     </body>
 </html>

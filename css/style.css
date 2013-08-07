@@ -9,7 +9,7 @@ body:not(.index) {
     padding-top: 60px;
     text-align: left;
 }
-body:not(.index) h1, .wrap h3 {
+body:not(.index) h1, h3 {
     text-align: center;
 }
 input[type=text] {
@@ -20,16 +20,16 @@ input[type=text]:focus {
     outline: solid 2px rgba(0,0,0, 0.2)
 }
 ::-webkit-input-placeholder {
-    text-transform: capitalize
+    text-transform: none !important;
 }
 :-moz-placeholder {
-    text-transform: capitalize
+    text-transform: none !important;
 }
 ::-moz-placeholder {
-    text-transform: capitalize
+    text-transform: none !important;
 }
 :-ms-input-placeholder {
-    text-transform: capitalize
+    text-transform: none !important;
 }
 button {
     padding-top: 2px
@@ -76,8 +76,11 @@ ol li:last-child:before {
     color: #0000b3;
     border-bottom-color: #0000b3;
 }
-#ofsted a, .schools li {
+#ofsted a, #ofsted li {
     padding: 5px
+}
+#school img {
+    max-width: 100%;
 }
 @media all and (max-width:800px) { 
     .index {
@@ -102,6 +105,7 @@ a.hidden {
 .navbar div:nth-child(2) {
     margin: 0 auto;
     position: relative;
+    z-index: -1;
 }
 .navbar div:nth-child(1) {
     position: absolute;
@@ -143,9 +147,17 @@ a.hidden {
     right: 0;
     position: absolute;
 }
-#logo-img {
-    cursor: pointer;
+.navbar a {
+    cursor: pointer !important;
 }
-#school img {
-    max-width: 100%;
+.navbar #logo-link {
+    z-index: 10;
+}
+.hasPlaceholder {
+    color: #ccc;
+    text-transform: none !important;
+    font-size: 0.8em !important;
+}
+head {
+    display: none;
 }
