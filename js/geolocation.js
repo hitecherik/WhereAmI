@@ -1,0 +1,2 @@
+// thanks to Paul Irish http://git.io/_CIkmw
+(function(e){if(e)return;var t;e=window.navigator.geolocation={};e.getCurrentPosition=function(e){if(t)e(t);$.getScript("//www.google.com/jsapi",function(){if(google.loader.ClientLocation){t={coords:{latitude:google.loader.ClientLocation.latitude,longitude:google.loader.ClientLocation.longitude}}}e(t)})};e.watchPosition=e.getCurrentPosition})(navigator.geolocation)

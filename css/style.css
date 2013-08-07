@@ -7,17 +7,14 @@ body {
 }
 body:not(.index) {
     padding-top: 60px;
+    padding-bottom: 20px;
     text-align: left;
 }
 body:not(.index) h1, h3 {
     text-align: center;
 }
 input[type=text] {
-    padding: 5px;
     text-transform: uppercase;
-}
-input[type=text]:focus {
-    outline: solid 2px rgba(0,0,0, 0.2)
 }
 ::-webkit-input-placeholder {
     text-transform: none !important;
@@ -31,8 +28,15 @@ input[type=text]:focus {
 :-ms-input-placeholder {
     text-transform: none !important;
 }
-button {
-    padding-top: 2px
+.loading-gif, .error-p {
+    display: none;
+}
+.error-p {
+    color: #b94a48;
+}
+.geo-p {
+    padding: 0;
+    margin-top: 10px;
 }
 ol {
     margin: 0;
@@ -82,20 +86,6 @@ ol li:last-child:before {
 #school img {
     max-width: 100%;
 }
-@media all and (max-width:800px) { 
-    .index {
-        padding-top: 60px
-    }
-    .schools li {
-        line-height: 30px
-    }
-}
-@media all and (max-width:400px) { 
-    .pure-grid:first-child, .pure-grid:last-child {
-        padding-left: 0;
-        padding-right: 0;
-    }
-}
 a:not([href]) {
     cursor: text
 }
@@ -127,6 +117,7 @@ a.hidden {
     left: 0;
     width: 100%;
     overflow: hidden;
+    z-index: 0;
 }
 .navbar a:not(#logo-link):hover {
     background-color: white;
@@ -143,7 +134,7 @@ a.hidden {
 .hidden {
     display: none;
 }
-.navbar a.hide {
+.navbar .hide {
     right: 0;
     position: absolute;
 }
@@ -158,6 +149,32 @@ a.hidden {
     text-transform: none !important;
     font-size: 0.8em !important;
 }
-head {
-    display: none;
+@media all and (max-width:800px) { 
+    .index {
+        padding-top: 60px
+    }
+    .schools li {
+        line-height: 30px
+    }
+}
+@media all and (max-width:400px) { 
+    .pure-grid:first-child, .pure-grid:last-child {
+        padding-left: 0;
+        padding-right: 0;
+    }
+    button {
+        margin-top: 10px;
+    }
+    body:not(.index){
+        width: 100%;
+        padding: 60px 10px 0 10px;
+    }
+    .index {
+        padding-top: 5px;
+        -moz-box-sizing: border-box;
+        -webkit-box-sizing: border-box;
+        -o-box-sizing: border-box;
+        -ms-box-sizing: border-box;
+        box-sizing: border-box;
+    }
 }

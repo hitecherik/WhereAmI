@@ -1,6 +1,32 @@
 $(window).load(function () {
     $('.nav-container').width($('.container').width());
+    if($(window).scrollTop() > 0) {
+        if ($('.navbar').width() === $(window).width()) {
+                $('.navbar').stop();
+                $('.navbar').css({
+                    'padding': '0'
+                });
+                $('.navbar').animate({
+                    'width': '65px',
+                    'position': 'fixed',
+                    'top': '0',
+                    'left': '0'
+                }, 'linear');
+                $('.navbar a:not(.hidden:nth-child(1))').css({
+                    'display': 'none'
+                });
+                $('.navbar #logo-img').hide();
+                $('.navbar a:nth-child(1)').css({
+                    'display': 'inline-block'
+                });
+                $('.navbar div:nth-child(2)').css({
+                    'z-index': '1'
+                });
+            }
+    }
     $(window).scroll(function () {
+            if ($(window).width() <= 800) {
+    } else if($(window).width()>800) {
         if ($(window).scrollTop() >= 1) {
             if ($('.navbar').width() === $(window).width()) {
                 $('.navbar').stop();
@@ -16,6 +42,7 @@ $(window).load(function () {
                 $('.navbar a:not(.hidden:nth-child(1))').css({
                     'display': 'none'
                 });
+                $('.navbar #logo-img').hide();
                 $('.navbar a:nth-child(1)').css({
                     'display': 'inline-block'
                 });
@@ -24,21 +51,21 @@ $(window).load(function () {
                 });
             }
         } else if ($(window).scrollTop() <= 0) {
-            $('.navbar').stop();
-            $('.navbar').animate({
-                'position': 'static',
-                'width': '100%'
-            });
-            $('.navbar a:not(.hidden:nth-child(1))').css({
-                'display': 'inline-block'
-            });
-            $('.navbar a.hidden').css({
-                'display': 'none'
-            });
-            $('.navbar div:nth-child(2)').css({
-                'z-index': '-1'
-            })
+                    $('.navbar').stop();
+        $('.navbar').animate({
+            'position': 'static',
+            'width': '100%'
+        });
+        $('.navbar a:not(.hidden:nth-child(1)):not(.hidden)').css({
+            'display': 'inline-block'
+        });
+        $('.navbar #logo-img').show();
+        $('.navbar a.hidden:nth-child(1)').hide();
         }
+                $('.navbar div:nth-child(2)').css(
+                    'z-index', '-200000000'
+                );
+    }
     });
     $('.navbar a.hidden:nth-child(1)').click(function () {
         $('.navbar').stop();
@@ -49,6 +76,7 @@ $(window).load(function () {
         $('.navbar a:not(.hidden:nth-child(1))').css({
             'display': 'inline-block'
         });
+        $('.navbar #logo-img').show();
         $(this).hide();
     });
     $('.navbar a.hidden:last-child').click(function () {
@@ -69,6 +97,7 @@ $(window).load(function () {
             'display': 'inline-block'
         });
         $(this).hide();
+        $('.navbar #logo-img').hide();
     });
     $('.navbar a.hidden:last-child').click(function () {
         $('.navbar').stop();
@@ -88,16 +117,6 @@ $(window).load(function () {
             'display': 'inline-block'
         });
         $(this).hide();
-    });
-    $('button[type=submit]').click(function (e) {
-        if ($('input[type=text]').val() === "") {
-            e.preventDefault();
-            alert('You have not entered a postcode');
-        } else if ($('input[type=text]').val().indexOf(' ') !== -1) {
-        } else {
-            e.preventDefault();
-            alert('You have not entered a valid postcode'); 
-        }
     });
     $('a').click(function(){
         $('html, body').animate({
@@ -118,8 +137,6 @@ $.getJSON("http://www.uk-postcodes.com/postcode/" + postcode.split(" ")[0] + pos
     
     //fire data
     $.getJSON("http://www.surreyopendata.org/resource/avf7-rxfg.json", function(_data){
-        console.log(_data);
-        
         var imgsrc = "http://maps.googleapis.com/maps/api/staticmap?center=" + encodeURIComponent(postcode) + "&sensor=false&zoom=10&size=600x300&maptype=roadmap&markers=color:blue%7Clabel:P%7C" + encodeURIComponent(postcode) + "&markers=color:red%7Clabel:F";
         
         for(var i = 0; i<50; i++){
@@ -131,19 +148,28 @@ $.getJSON("http://www.uk-postcodes.com/postcode/" + postcode.split(" ")[0] + pos
     
     //school data
     $.getJSON("http://www.surreyopendata.org/resource/2ami-xnhh.json", function(_data){
-        console.log(_data);
-        
-        var imgsrc = "http://maps.googleapis.com/maps/api/staticmap?center=" + encodeURIComponent(postcode) + "&sensor=false&zoom=12&size=600x300&maptype=roadmap&markers=color:blue%7Clabel:P%7C" + encodeURIComponent(postcode) + "&markers=color:green%7Clabel:S";
+        var imgsrc = "http://maps.googleapis.com/maps/api/staticmap?center=" + encodeURIComponent(postcode) + "&sensor=false&zoom=12&size=600x300&maptype=roadmap&markers=color:blue%7Clabel:P%7C" + encodeURIComponent(postcode) + "&markers=color:green%7Clabel:S",
+            ol = $("#ofsted ol");
         
         for(var i = 0; i < _data.length; i++){
-            var sch = _data[i],
-                ol = $("#ofsted ol");
+            var sch = _data[i];
             
             if(sch.easting.substring(0,2) === easting.substring(0,2) && sch.northing.substring(0,2) === northing.substring(0,2)){
                 imgsrc += "%7C" + sch.location_1.latitude + "," + sch.location_1.longitude;
                 ol.append("<li><a href='http://www.ofsted.gov.uk/inspection-reports/find-inspection-report/provider/ELS/" + sch.urn + "' target='_blank'>" + sch.fullname + "</a></li>")    
             }
         }
+        
+        $.getJSON("http://www.surreyopendata.org/resource/p8xs-n6f2.json", function(__data){
+            for(var i = 0; i < __data.length; i++){
+                var sch = __data[i];
+                
+                if(sch.easting.substring(0,2) === easting.substring(0,2) && sch.northing.substring(0,2) === northing.substring(0,2)){
+                    imgsrc += "%7C" + sch.location_1.latitude + "," + sch.location_1.longitude;
+                    ol.append("<li><a href='http://www.ofsted.gov.uk/inspection-reports/find-inspection-report/provider/ELS/" + sch.urn + "' target='_blank'>" + sch.name + "</a></li>")    
+                }
+            }
+        })
         
         $("#school img").attr("src", imgsrc)
     })

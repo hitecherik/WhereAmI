@@ -63,18 +63,17 @@
             <div class="fires-crimes pure-g-r">
                 <div class="pure-u-1-2 pure-grid" id="fire">
                     <a name='fire'><h3>Nearest fire incidents</h3></a>
-                    <img src="http://placehold.it/600x300&text=Fires+Map" alt="">
+                    <img src="http://placehold.it/600x300&text=Loading..." alt="">
                 </div>
                 <div class="pure-u-1-2 pure-grid" id="crime">
                     <a name='crime'><h3>Nearest crimes</h3></a>
                     <img src="<?php echo $imgsrc; ?>" alt="">
-                    <!-- http://placehold.it/600x300&text=Crimes+Map -->
                 </div>
             </div>
             
             <div id="school">
                 <h3>Nearest schools</h3>
-                <p align="center"><img src="http://placehold.it/600x300&text=Schools+Map" alt="" /></p>
+                <p align="center"><img src="http://placehold.it/600x300&text=Loading..." alt="" /></p>
             </div>
             <div id="ofsted">
                 <h3>Schools' Ofsted Reports</h3>
