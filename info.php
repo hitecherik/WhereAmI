@@ -68,12 +68,19 @@
     </head>
     <body>
         <div class='navbar'>
-            <div class='logo'><a href="index.php" id="logo-link"><img src='navbar-logo.png' alt='' width="48px" id="logo-img" /></a></div>
+            <div class='logo'><a href="index.php" id="logo-link"><img src='img/navbar-logo.png' alt='' width="48px" id="logo-img" /></a></div>
             <div align='center'>
                 <a class='hidden'>Menu</a>
                 <a href='#fire'>Fires</a>
                 <a href='#crime'>Crimes</a>
                 <a href='#school'>Schools</a>
+                <?php
+                    if($surrey){
+                ?>
+                <a href="#traffic">Traffic</a>
+                <?php
+                    }
+                ?>
                 <a class='hidden hide'>Hide</a>
             </div>
         </div>
@@ -91,12 +98,11 @@
             
             <div class="fires-crimes pure-g-r">
                 <div class="pure-u-1-2 pure-grid" id="fire">
-                    <a name='fire'><h3>Nearest fire incidents</h3></a>
+                    <h3>Nearest fire incidents</h3>
                     <a href="img/image-1.jpg" data-lightbox="image-1" title=""><img src="http://placehold.it/600x300&text=Loading..." alt=""></a>
-                <!--    <img src="http://placehold.it/600x300&text=Loading..." alt=""> -->
                 </div>
                 <div class="pure-u-1-2 pure-grid" id="crime">
-                    <a name='crime'><h3>Nearest crimes</h3></a>
+                    <h3>Nearest crimes</h3>
                     <a href="<?php echo $imgsrc; ?>" data-lightbox="ggggh" title=""><img src="<?php echo $imgsrc; ?>" alt=""></a>
                 </div>
             </div>
@@ -111,10 +117,9 @@
                 </div>
                 <div class="pure-u-1-2 pure-grid" id="traffic">
                     <h3>Traffic Accidents</h3>
-                    <!--<p><?php echo $cars . ", " . $cyclists . ", " . $pedestrians; ?></p>-->
                     <table class="pure-table traffic-table">
                         <thead>
-                            <tr><th>Mode of Transport</th><th>Fatalities and Serious Injuries in 1 Year</th></tr>
+                            <tr><th>Mode of Transport</th><th>Fatalities/Serious Injuries</th></tr>
                         </thead>
                         <tbody>
                             <tr><td>Cars Occupants</td><td><?php echo $cars; ?></td></tr>

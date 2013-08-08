@@ -1,17 +1,32 @@
-body {
+body, .footer-wrap {
     font-family: 'Cabin Condensed', sans-serif;
     width: 50%;
     margin: auto;
     text-align: center;
-    padding-top: 150px;
+    padding-top: 90px;
+    padding-bottom: 120px;
 }
-body:not(.index) {
+body:not(.index-html) {
     padding-top: 60px;
     padding-bottom: 20px;
     text-align: left;
 }
-body:not(.index) h1, h3 {
+body:not(.index-html) h1, h3 {
     text-align: center;
+}
+.footer {
+    position: fixed;
+    width: 100%;
+    height: 120px;
+    bottom: 0;
+    left: 0;
+    background: #e3e3e3;
+}
+.footer-wrap {
+    text-align: left;
+    padding-top: 0;
+    padding-bottom: 0;
+    font-size: 85%
 }
 input[type=text] {
     text-transform: uppercase;
@@ -31,19 +46,12 @@ input[type=text] {
 .loading-gif {
     display: none;
 }
-.error-p, .ie-message {
+.invalid, .ie-message {
     color: #b94a48;
 }
-.error-p {
-    opacity: 0;
+.invalid {
+    display: none;
     padding: 10px;
-    background-color: red;
-    color: white;
-    display: inline-block;
-    border-radius: 15px;
-    margin-top: -20px;
-    border: #b94a48;
-    cursor: default;
 }
 .error-bubble {
     font-weight: bold;
@@ -90,13 +98,13 @@ ol li:last-child:before {
 .pure-grid:last-child {
     padding-left: 5px
 }
-#ofsted a, .creators a, .libraries a {
+#ofsted a, .creators a, .libraries a, .footer-wrap a {
     color: #4d4dff;
     text-decoration: none;
     border-bottom: 1px dotted #4d4dff;
     transition: all 0.3s;
 }
-#ofsted a:hover, .creators a:hover, .libraries a:hover {
+#ofsted a:hover, .creators a:hover, .libraries a:hover, .footer-wrap a:hover {
     color: #0000b3;
     border-bottom-color: #0000b3;
 }
@@ -175,8 +183,8 @@ a.hidden {
     font-size: 0.8em !important;
 }
 @media all and (max-width:800px) { 
-    .index {
-        padding-top: 60px
+    .index-html {
+        padding-top: 0;
     }
     #schools li {
         line-height: 30px
@@ -190,20 +198,33 @@ a.hidden {
     button {
         margin-top: 10px;
     }
-    body:not(.index){
+    body:not(.index-html){
         width: 100%;
         padding: 60px 10px 0 10px;
     }
-    .index {
+    .index-html {
         padding-top: 5px;
+        padding-bottom: 0 !important;
         -moz-box-sizing: border-box;
         -webkit-box-sizing: border-box;
         -o-box-sizing: border-box;
         -ms-box-sizing: border-box;
         box-sizing: border-box;
     }
+    .footer {
+        position: static;
+        height: auto;
+        background: white;
+    }
+    .footer-wrap {
+        width: 100%;
+    }
+    
+    .thanks-html {
+        padding-top: 0 !important;
+        padding-bottom: 20px !important;
+    }
 }
-
 .navbar {
     z-index: 100 !important;
 }

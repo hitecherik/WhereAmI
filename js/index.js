@@ -28,17 +28,19 @@ $("#location").on("click", function(){
 $("#postcode-form").on("submit", function(e){
     var postcode = $("#postcode-input").val();
     if(postcode.indexOf(" ")===-1){
-        // alert("Invalid postocode. Please enter a valid one.");
-        if($('.invalid').css('opacity') !== '0') {
-            $(".invalid").css({'opacity': '1'}).clearQueue();
-            setTimeout(function(){$(".invalid").fadeTo(300, 0)}, 5000);
+        /* if($('.invalid').css('display') !== 'none') {
+            $(".invalid").css({'display': 'block'}).clearQueue();
+            setTimeout(function(){$(".invalid").slideDown()}, 5000);
             e.preventDefault();
-        } else {
-        $(".invalid").fadeTo(300, 1).delay(5000).fadeTo(300, 0);
-        e.preventDefault();
-        }
+        } else { */
+            $("button[type='submit']").attr("disabled", "disabled");
+            $(".invalid").slideDown().delay(5000).slideUp(function(){
+                $("button[type='submit']").removeAttr("disabled");
+            });
+            e.preventDefault();
+        // }
     }
 });
 $(window).load(function(){
-$('.invalid p').width($('.error-container').outerWidth() -20);
+    $('.invalid p').width($('.error-container').outerWidth() -20);
 });

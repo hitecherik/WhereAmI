@@ -25,8 +25,8 @@ $(window).load(function () {
             }
     }
     $(window).scroll(function () {
-            if ($(window).width() <= 800) {
-    } else if($(window).width()>800) {
+            if ($(window).width() <= 801) {
+    } else if($(window).width()>801) {
         if ($(window).scrollTop() >= 1) {
             if ($('.navbar').width() === $(window).width()) {
                 $('.navbar').stop();
