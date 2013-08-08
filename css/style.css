@@ -28,30 +28,50 @@ input[type=text] {
 :-ms-input-placeholder {
     text-transform: none !important;
 }
-.loading-gif, .error-p {
+.loading-gif {
     display: none;
 }
 .error-p, .ie-message {
     color: #b94a48;
 }
+.error-p {
+    opacity: 0;
+    padding: 10px;
+    background-color: red;
+    color: white;
+    display: inline-block;
+    border-radius: 15px;
+    margin-top: -20px;
+    border: #b94a48;
+    cursor: default;
+}
+.error-bubble {
+    font-weight: bold;
+    color: #833332;
+    background: #ce817f;
+    padding: 5px;
+    border: 1px solid #833332;
+    border-radius: 5px;
+    text-align: center;
+}
 .geo-p {
     padding: 0;
     margin-top: 10px;
 }
-ol {
+ol, .libraries ul {
     margin: 0;
     padding: 0;
     list-style: none;
 }
-ol li {
+ol li, .libraries li {
     display: inline;
     padding: 0;
     line-height: 30px;
 }
-ol li:after {
+ol li:after, .libraries li:after {
     content: ', ';
 }
-ol li:last-child:after {
+ol li:last-child:after, .libraries li: {
     content: '.';
 }
 ol li:last-child:before {
@@ -70,21 +90,26 @@ ol li:last-child:before {
 .pure-grid:last-child {
     padding-left: 5px
 }
-#ofsted a {
+#ofsted a, .creators a, .libraries a {
     color: #4d4dff;
     text-decoration: none;
     border-bottom: 1px dotted #4d4dff;
     transition: all 0.3s;
 }
-#ofsted a:hover {
+#ofsted a:hover, .creators a:hover, .libraries a:hover {
     color: #0000b3;
     border-bottom-color: #0000b3;
 }
-#ofsted a, #ofsted li {
-    padding: 5px
-}
 #school img {
     max-width: 100%;
+}
+.libraries ul {
+    list-style: none;
+    margin-left: 0;
+    padding-left: 0;
+}
+.libraries li {
+    display: inline;
 }
 a:not([href]) {
     cursor: text
@@ -153,7 +178,7 @@ a.hidden {
     .index {
         padding-top: 60px
     }
-    .schools li {
+    #schools li {
         line-height: 30px
     }
 }
@@ -177,4 +202,8 @@ a.hidden {
         -ms-box-sizing: border-box;
         box-sizing: border-box;
     }
+}
+
+.navbar {
+    z-index: 100 !important;
 }

@@ -29,7 +29,7 @@
         <div class="wrap">
             <p><img src="web-logo.png" alt=""></p>
             <h1>Where Am I?</h1>
-            <p class="error-p invalid">Whoops! You might have mistyped the postcode. Please try again.</p>
+            <p class="error-p error-bubble invalid">Whoops! You might have mistyped the postcode. Please try again.</p>
             <form id="postcode-form" class="pure-form" method="get" action="info.php">
                 <fieldset>
                     <input name="postcode" id="postcode-input" type="text" placeholder="Enter your postcode!" maxlength="8">

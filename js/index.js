@@ -7,7 +7,9 @@ function useLocation(lat,lng){
 
 $("#location").on("click", function(){
     navigator.geolocation.getCurrentPosition(function(position) {
+                $(window).css({'cursor':'loading'});
         $(".loading-gif").show();
+
         var latitude = position.coords.latitude,
             longitude = position.coords.longitude;
         
@@ -15,11 +17,28 @@ $("#location").on("click", function(){
     });
 });
 
+// $("#postcode-form").on("submit", function(e){
+//     var postcode = $("#postcode-input").val();
+//     if(postcode.indexOf(" ")===-1){
+//         $(".invalid").slideDown().delay(5000).slideUp();
+        
+//         e.preventDefault();
+//     }
+// });
 $("#postcode-form").on("submit", function(e){
     var postcode = $("#postcode-input").val();
     if(postcode.indexOf(" ")===-1){
-        $(".invalid").slideDown().delay(5000).slideUp();
-        
+        // alert("Invalid postocode. Please enter a valid one.");
+        if($('.invalid').css('opacity') !== '0') {
+            $(".invalid").css({'opacity': '1'}).clearQueue();
+            setTimeout(function(){$(".invalid").fadeTo(300, 0)}, 5000);
+            e.preventDefault();
+        } else {
+        $(".invalid").fadeTo(300, 1).delay(5000).fadeTo(300, 0);
         e.preventDefault();
+        }
     }
+});
+$(window).load(function(){
+$('.invalid p').width($('.error-container').outerWidth() -20);
 });

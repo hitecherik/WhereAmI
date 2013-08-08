@@ -144,6 +144,7 @@ $.getJSON("http://www.uk-postcodes.com/postcode/" + postcode.split(" ")[0] + pos
         }
         
         $("#fire img").attr("src", imgsrc)
+        $("#fire a:last-child").attr("href", imgsrc)
     });
     
     //school data
@@ -172,5 +173,6 @@ $.getJSON("http://www.uk-postcodes.com/postcode/" + postcode.split(" ")[0] + pos
         })
         
         $("#school img").attr("src", imgsrc)
+        $("#school a:last-child").attr("href", imgsrc)
     });
 });
