@@ -137,7 +137,7 @@
                             <tr><th>Mode of Transport</th><th>Fatalities/Serious Injuries</th></tr>
                         </thead>
                         <tbody>
-                            <tr><td>Cars Occupants</td><td><?php echo $cars; ?></td></tr>
+                            <tr><td>Car Occupants</td><td><?php echo $cars; ?></td></tr>
                             <tr><td>Cyclists</td><td><?php echo $cyclists; ?></td></tr>
                             <tr><td>Pedestrians</td><td><?php echo $pedestrians; ?></td></tr>
                         </tbody>
