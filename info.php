@@ -118,7 +118,7 @@
             <?php
                 if($surrey){
             ?>
-            <div class="fires-crimes pure-g-r">
+            <div class="house-traffic pure-g-r">
                 <div class="pure-u-1-2 pure-grid" id="housing">
                     <h3>Average House Prices</h3>
                     <table class="pure-table housing-table">

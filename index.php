@@ -49,19 +49,19 @@
                 <p>Enter your postcode to get maps of recent fire incidents and crimes, schools, house prices and traffic fatalities and serious injuries. Only works in Surrey (so far).</p>
                 <p>Copyright &copy; Alexander Nielsen, Anand Aggarwal and Olliver Cole, 2013. Licensed under MIT License. <i><a href="thanks.html">This website wouldn't be possible without...</a></i></p>
         		<div class="social-buttons">
-        		    	<table>
-                            <tr>
-                                <td>
-                                    <a href='https://twitter.com/Where_Am_I_co'><div class='twitter-logo'></div></a>
-                                </td>
-                                <td>
-                                    <a href='https://twitter.com/Where_Am_I_co'><div class='facebook-logo-text'>f</div></a>
-                                </td>
-                                <td>
-                                    <a href='https://twitter.com/Where_Am_I_co'><div class='google-logo-text'>g+</div></a>
-                                </td>
-                            </tr>
-                        </table>
+    		    	<table>
+                        <tr>
+                            <td>
+                                <a href='https://twitter.com/Where_Am_I_co'><div class='twitter-logo'></div></a>
+                            </td>
+                            <td>
+                                <a href='https://facebook.com/pages/Where_Am_I/203060053193730'><div class='facebook-logo-text'>f</div></a>
+                            </td>
+                            <td>
+                                <a href='https://plus.google.com/112134478416942283546/about'><div class='google-logo-text'>g+</div></a>
+                            </td>
+                        </tr>
+                    </table>
         		</div>
             </div>
         </div>

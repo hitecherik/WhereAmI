@@ -17,28 +17,14 @@ $("#location").on("click", function(){
     });
 });
 
-// $("#postcode-form").on("submit", function(e){
-//     var postcode = $("#postcode-input").val();
-//     if(postcode.indexOf(" ")===-1){
-//         $(".invalid").slideDown().delay(5000).slideUp();
-        
-//         e.preventDefault();
-//     }
-// });
 $("#postcode-form").on("submit", function(e){
     var postcode = $("#postcode-input").val();
     if(postcode.indexOf(" ")===-1){
-        /* if($('.invalid').css('display') !== 'none') {
-            $(".invalid").css({'display': 'block'}).clearQueue();
-            setTimeout(function(){$(".invalid").slideDown()}, 5000);
-            e.preventDefault();
-        } else { */
-            $("button[type='submit']").attr("disabled", "disabled");
-            $(".invalid").slideDown().delay(5000).slideUp(function(){
-                $("button[type='submit']").removeAttr("disabled");
-            });
-            e.preventDefault();
-        // }
+        $("button[type='submit']").attr("disabled", "disabled");
+        $(".invalid").slideDown().delay(5000).slideUp(function(){
+            $("button[type='submit']").removeAttr("disabled");
+        });
+        e.preventDefault();
     }
 });
 $(window).load(function(){

@@ -102,6 +102,10 @@ ol li:last-child:before {
     color: #4d4dff;
     text-decoration: none;
     border-bottom: 1px dotted #4d4dff;
+    -webkit-transition: all 0.3s;
+	-moz-transition: all 0.3s;
+	-o-transition: all 0.3s;
+	-ms-transition: all 0.3s;
     transition: all 0.3s;
 }
 #ofsted a:hover, .creators a:hover, .libraries a:hover, .footer-wrap a:hover {
@@ -186,11 +190,17 @@ a.hidden {
     .index-html {
         padding-top: 0;
     }
+    body {
+    	margin-bottom: 0;
+    }
     #schools li {
         line-height: 30px
     }
     .pure-grid {
         width: 100%;
+    }
+    .footer {
+    	height: 170px;
     }
 }
 @media all and (max-width:400px) { 
@@ -221,8 +231,7 @@ a.hidden {
     }
     .footer-wrap {
         width: 100%;
-    }
-    
+    }   
     .thanks-html {
         padding-top: 0 !important;
         padding-bottom: 20px !important;
@@ -238,6 +247,10 @@ a.hidden {
     background-color: #ccc;
     border-radius: 20px;
     -webkit-transition: all 0.2s linear;
+    -moz-transition: all 0.2s linear;
+    -ms-transition: all 0.2s linear;
+    -o-transition: all 0.2s linear;
+    transition: all 0.2s linear;
     cursor: pointer;
     background-repeat: no-repeat;
     background-size: 20px 20px;
@@ -266,6 +279,6 @@ a.hidden {
     height: 30px;
     padding: 0;
 }
-.housing-table {
+.house-traffic table {
 	width: 100%;
 }
