@@ -163,20 +163,6 @@ $.getJSON("http://www.uk-postcodes.com/postcode/" + postcode.split(" ")[0] + pos
                 ol.append("<li><b>" + alphabet[j] + ":</b> <a href='http://www.ofsted.gov.uk/inspection-reports/find-inspection-report/provider/ELS/" + sch.urn + "' target='_blank'>" + sch.fullname + "</a></li>")    
             }
         }
-
-	/* $.getJSON("http://www.surreyopendata.org/resource/p8xs-n6f2.json", function(__data){
-		j = -1;
-
-            	for(var i = 0; i < __data.length; i++){
-			var sch = __data[i];
-              	  
-                	if(sch.easting.substring(0,2) === easting.substring(0,2) && sch.northing.substring(0,2) === northing.substring(0,2) && j<21){
-                    		j++;
-                    		imgsrc += "&markers=color:yellow%7Clabel:" + alphabet[j] + "%7C" + sch.location_1.latitude + "," + sch.location_1.longitude;
-                    		ol.append("<li>Yellow " + alphabet[j] + ": <a href='http://www.ofsted.gov.uk/inspection-reports/find-inspection-report/provider/ELS/" + sch.urn + "' target='_blank'>" + sch.name + "</a></li>")    
-                	}
-            	}
-        }) */
         
         $("#school img").attr("src", imgsrc)
         $("#school a:last-child").attr("href", imgsrc)

@@ -4,7 +4,7 @@ body, .footer-wrap {
     margin: auto;
     text-align: center;
     padding-top: 90px;
-    padding-bottom: 120px;
+    padding-bottom: 150px;
 }
 body:not(.index-html) {
     padding-top: 60px;
@@ -17,7 +17,7 @@ body:not(.index-html) h1, h3 {
 .footer {
     position: fixed;
     width: 100%;
-    height: 120px;
+    height: 150px;
     bottom: 0;
     left: 0;
     background: #e3e3e3;
@@ -79,7 +79,7 @@ ol li, .libraries li {
 ol li:after, .libraries li:after {
     content: ', ';
 }
-ol li:last-child:after, .libraries li: {
+ol li:last-child:after, .libraries li:last-child:after {
     content: '.';
 }
 ol li:last-child:before {
@@ -230,4 +230,42 @@ a.hidden {
 }
 .navbar {
     z-index: 100 !important;
+}
+
+.google-logo-text, .twitter-logo, .facebook-logo-text {
+    width: 30px;
+    height: 30px;
+    background-color: #ccc;
+    border-radius: 20px;
+    -webkit-transition: all 0.2s linear;
+    cursor: pointer;
+    background-repeat: no-repeat;
+    background-size: 20px 20px;
+    background-position: center;
+
+}
+.google-logo-text:hover, .twitter-logo:hover, .facebook-logo-text:hover {
+    background-color: #000;
+}
+.twitter-logo {
+    background-image: url(../img/twitter.png);
+}
+.google-logo-text, .facebook-logo-text {
+    font-family: 'Cabin Condensed' sans-serif;
+    font-weight: bold;
+    text-align: center;
+    line-height: 30px;
+    font-size: 20px;
+    color:rgb(0, 153, 255);
+    text-decoration: none;
+}
+.google-logo-text {
+	line-height: 25px;
+}
+.social-buttons table {
+    height: 30px;
+    padding: 0;
+}
+.housing-table {
+	width: 100%;
 }

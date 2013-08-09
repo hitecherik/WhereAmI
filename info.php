@@ -47,6 +47,13 @@
         $cyclists = $row['Cyclists'];
         $pedestrians = $row['Pedestrians'];
     };
+
+    $result = mysqli_query($con, "SELECT * FROM housing WHERE Name = \"" . $district . "\"");
+    $price = "£";
+
+    while($row = mysqli_fetch_array($result)){
+    	$price .= $row['Price'];
+    }
     
     mysqli_close($con);
 ?>
@@ -78,6 +85,7 @@
                     if($surrey){
                 ?>
                 <a href="#traffic">Traffic</a>
+                <a href="#housing">Housing</a>
                 <?php
                     }
                 ?>
@@ -111,9 +119,16 @@
                 if($surrey){
             ?>
             <div class="fires-crimes pure-g-r">
-                <div class="pure-u-1-2 pure-grid" id="school">
-                    <h3>Nearest schools</h3>
-                    <p align="center"><a href="" data-lightbox="vjjvhjj" title=""><img src="http://placehold.it/600x300&text=Loading..." alt="" /></a></p>
+                <div class="pure-u-1-2 pure-grid" id="housing">
+                    <h3>Average House Prices</h3>
+                    <table class="pure-table housing-table">
+                        <thead>
+                            <tr><th>Surrey</th><th>£318,000</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td><?php echo $district; ?></td><td><?php echo $price; ?></td></tr>
+                        </tbody>
+                    </table>
                 </div>
                 <div class="pure-u-1-2 pure-grid" id="traffic">
                     <h3>Traffic Accidents</h3>
@@ -131,18 +146,13 @@
             </div>
             
             <?php
-                } else {
+                }
             ?>
             
             <div id="school">
                 <h3>Nearest schools</h3>
                 <p align="center"><a href="" data-lightbox="vjjvhjj" title=""><img src="http://placehold.it/600x300&text=Loading..." alt="" /></a></p>
-            </div>
-            
-            <?php
-                }
-            ?>
-            
+            </div>            
             <div id="ofsted">
                 <h3>Schools' Ofsted Reports</h3>
                 <ol></ol>
