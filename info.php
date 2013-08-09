@@ -16,7 +16,7 @@
     $langs = array("blank");
     
     $imgsrc = "http://maps.googleapis.com/maps/api/staticmap?center=" . urlencode($postcode) . "&sensor=false&zoom=10&size=600x300&maptype=roadmap
-&markers=color:blue%7Clabel:P%7C" . urlencode($postcode) . "&markers=color:red%7Clabel:C";
+&markers=color:blue%7Clabel:ab%7C" . urlencode($postcode) . "&markers=color:red%7Clabel:C";
     
     while($row = mysqli_fetch_array($result)){
         array_push($longs, $row['Longitude']);

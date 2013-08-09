@@ -137,7 +137,7 @@ $.getJSON("http://www.uk-postcodes.com/postcode/" + postcode.split(" ")[0] + pos
     
     //fire data
     $.getJSON("http://www.surreyopendata.org/resource/avf7-rxfg.json", function(_data){
-        var imgsrc = "http://maps.googleapis.com/maps/api/staticmap?center=" + encodeURIComponent(postcode) + "&sensor=false&zoom=10&size=600x300&maptype=roadmap&markers=color:blue%7Clabel:P%7C" + encodeURIComponent(postcode) + "&markers=color:red%7Clabel:F";
+        var imgsrc = "http://maps.googleapis.com/maps/api/staticmap?center=" + encodeURIComponent(postcode) + "&sensor=false&zoom=10&size=600x300&maptype=roadmap&markers=color:blue%7Clabel:ab%7C" + encodeURIComponent(postcode) + "&markers=color:red%7Clabel:F";
         
         for(var i = 0; i<50; i++){
             imgsrc += "%7C" + _data[i].location_1.latitude + "," + _data[i].location_1.longitude;
@@ -149,28 +149,34 @@ $.getJSON("http://www.uk-postcodes.com/postcode/" + postcode.split(" ")[0] + pos
     
     //school data
     $.getJSON("http://www.surreyopendata.org/resource/2ami-xnhh.json", function(_data){
-        var imgsrc = "http://maps.googleapis.com/maps/api/staticmap?center=" + encodeURIComponent(postcode) + "&sensor=false&zoom=12&size=600x300&maptype=roadmap&markers=color:blue%7Clabel:P%7C" + encodeURIComponent(postcode) + "&markers=color:green%7Clabel:S",
-            ol = $("#ofsted ol");
+        var imgsrc = "http://maps.googleapis.com/maps/api/staticmap?center=" + encodeURIComponent(postcode) + "&sensor=false&zoom=12&size=600x300&maptype=roadmap&markers=color:blue%7Clabel:ab%7C" + encodeURIComponent(postcode),
+            ol = $("#ofsted ol"),
+            alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ",
+            j = -1;
         
         for(var i = 0; i < _data.length; i++){
             var sch = _data[i];
             
-            if(sch.easting.substring(0,2) === easting.substring(0,2) && sch.northing.substring(0,2) === northing.substring(0,2)){
-                imgsrc += "%7C" + sch.location_1.latitude + "," + sch.location_1.longitude;
-                ol.append("<li><a href='http://www.ofsted.gov.uk/inspection-reports/find-inspection-report/provider/ELS/" + sch.urn + "' target='_blank'>" + sch.fullname + "</a></li>")    
+            if(sch.easting.substring(0,2) === easting.substring(0,2) && sch.northing.substring(0,2) === northing.substring(0,2) && j<25){
+                j++;
+                imgsrc += "&markers=color:green%7Clabel:" + alphabet[j] + "%7C" + sch.location_1.latitude + "," + sch.location_1.longitude;
+                ol.append("<li><b>" + alphabet[j] + ":</b> <a href='http://www.ofsted.gov.uk/inspection-reports/find-inspection-report/provider/ELS/" + sch.urn + "' target='_blank'>" + sch.fullname + "</a></li>")    
             }
         }
-        
-        $.getJSON("http://www.surreyopendata.org/resource/p8xs-n6f2.json", function(__data){
-            for(var i = 0; i < __data.length; i++){
-                var sch = __data[i];
-                
-                if(sch.easting.substring(0,2) === easting.substring(0,2) && sch.northing.substring(0,2) === northing.substring(0,2)){
-                    imgsrc += "%7C" + sch.location_1.latitude + "," + sch.location_1.longitude;
-                    ol.append("<li><a href='http://www.ofsted.gov.uk/inspection-reports/find-inspection-report/provider/ELS/" + sch.urn + "' target='_blank'>" + sch.name + "</a></li>")    
-                }
-            }
-        })
+
+	/* $.getJSON("http://www.surreyopendata.org/resource/p8xs-n6f2.json", function(__data){
+		j = -1;
+
+            	for(var i = 0; i < __data.length; i++){
+			var sch = __data[i];
+              	  
+                	if(sch.easting.substring(0,2) === easting.substring(0,2) && sch.northing.substring(0,2) === northing.substring(0,2) && j<21){
+                    		j++;
+                    		imgsrc += "&markers=color:yellow%7Clabel:" + alphabet[j] + "%7C" + sch.location_1.latitude + "," + sch.location_1.longitude;
+                    		ol.append("<li>Yellow " + alphabet[j] + ": <a href='http://www.ofsted.gov.uk/inspection-reports/find-inspection-report/provider/ELS/" + sch.urn + "' target='_blank'>" + sch.name + "</a></li>")    
+                	}
+            	}
+        }) */
         
         $("#school img").attr("src", imgsrc)
         $("#school a:last-child").attr("href", imgsrc)

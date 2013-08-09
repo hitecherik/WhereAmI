@@ -13,6 +13,7 @@
         <link rel="stylesheet" href="css/pure-min.css">
         <link rel="stylesheet" href="css/style.css">
         <link rel="icon" href="favicon.io">
+        <link rel="apple-touch-icon-precomposed" href="img/apple-logo.png">
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
         <script src="js/geolocation.js"></script>
         <!--[if IE]>

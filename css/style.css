@@ -189,6 +189,9 @@ a.hidden {
     #schools li {
         line-height: 30px
     }
+    .pure-grid {
+        width: 100%;
+    }
 }
 @media all and (max-width:400px) { 
     .pure-grid:first-child, .pure-grid:last-child {
