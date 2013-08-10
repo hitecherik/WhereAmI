@@ -52,7 +52,7 @@
     		    	<table>
                         <tr>
                             <td>
-                                <a href='https://twitter.com/Where_Am_I_co'><div class='twitter-logo'></div></a>
+                                <a href='https://twitter.com/whereami_uk'><div class='twitter-logo'></div></a>
                             </td>
                             <td>
                                 <a href='https://facebook.com/pages/Where_Am_I/203060053193730'><div class='facebook-logo-text'>f</div></a>
