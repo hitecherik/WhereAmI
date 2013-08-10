@@ -52,13 +52,13 @@
     		    	<table>
                         <tr>
                             <td>
-                                <a href='https://twitter.com/whereami_uk'><div class='twitter-logo'></div></a>
+                                <a href='https://twitter.com/whereami_uk' target="_blank"><div class='twitter-logo'></div></a>
                             </td>
                             <td>
-                                <a href='https://facebook.com/pages/Where_Am_I/203060053193730'><div class='facebook-logo-text'>f</div></a>
+                                <a href='https://facebook.com/pages/Where_Am_I/203060053193730' target="_blank"><div class='facebook-logo-text'>f</div></a>
                             </td>
                             <td>
-                                <a href='https://plus.google.com/112134478416942283546/about'><div class='google-logo-text'>g+</div></a>
+                                <a href='https://plus.google.com/112134478416942283546/about' target="_blank"><div class='google-logo-text'>g+</div></a>
                             </td>
                         </tr>
                     </table>
