@@ -125,7 +125,7 @@ $(window).load(function () {
         return false;
     });
     $("#logo-img").on("click", function(){
-        window.location = "http://where-am-i.eu5.org/";
+        window.location = "http://where-am-i.co.uk/";
     });
 });
 

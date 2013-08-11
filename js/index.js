@@ -1,7 +1,7 @@
 function useLocation(lat,lng){
     $.getJSON("http://www.uk-postcodes.com/latlng/" + lat + "," + lng + ".json?callback=?", function(data){
         var postcode = data.postcode.split("  ")[0] + "+" + data.postcode.split("  ")[1];
-        window.location = "http://where-am-i.eu5.org/info.php?postcode=" + postcode;
+        window.location = "http://where-am-i.co.uk/info.php?postcode=" + postcode;
     });
 }
 
