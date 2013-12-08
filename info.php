@@ -4,13 +4,13 @@
     $postcode = strtoupper($_GET["postcode"]);
     $postcode = str_replace(" UNDEFINED", "", $postcode);
     
-    $con=mysqli_connect("localhost",$user,$pass,$db);
+    $con=mysqli_connect("localhost", $user, $pass, $db);
     
     if (mysqli_connect_errno()){
         echo "Failed to connect to MySQL: " . mysqli_connect_error();
     }
     
-    $result = mysqli_query($con,"SELECT * FROM police ");
+    $result = mysqli_query($con, "SELECT * FROM police ");
     
     $longs = array("blank");
     $langs = array("blank");
@@ -28,16 +28,16 @@
         $imgsrc .= "%7C" . $langs[$random] . "," . $longs[$random];
     }
     
-    $uk_postcodes = simplexml_load_file("http://www.uk-postcodes.com/postcode/" . str_replace(" ", "", $postcode) . ".xml");
-    $district = $uk_postcodes->administrative->district->title;
+    $uk_postcodes = simplexml_load_file("http://www.openlylocal.com/areas/postcodes/" . str_replace(" ", "%20", $postcode) . ".xml");
+	$district = str_replace("And", "and", ucwords($uk_postcodes->ward->council->{"normalised-title"}));
     
     $surrey = true;
     
-    if($uk_postcodes->administrative->county->title!="Surrey"){
+    /* if($uk_postcodes->administrative->county->title!="Surrey"){
         $surrey = false;
-    }
+    } */
     
-    $result = mysqli_query($con, "SELECT * FROM traffic WHERE Name = \"" . $district . "\"");
+    $result = mysqli_query($con, "SELECT * FROM traffic WHERE Name = \"$district\"");
     $cars = "";
     $cyclists = "";
     $pedestrians = "";
@@ -70,7 +70,7 @@
         <title><?php echo $postcode; ?> Information</title>
         
         <?php
-            echo "<script>var postcode = '" . $postcode . "';</script>";
+            echo "<script>var postcode = '$postcode';</script>";
         ?>
     </head>
     <body>
