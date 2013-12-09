@@ -1,4 +1,5 @@
 $(window).load(function () {
+	// navbar
     $('.nav-container').width($('.container').width());
     if($(window).scrollTop() > 0) {
         if ($('.navbar').width() === $(window).width()) {
@@ -120,51 +121,129 @@ $(window).load(function () {
     });
     $('a').click(function(){
         $('html, body').animate({
-            scrollTop: $('[name="' + $.attr(this, 'href').substr(1) + '"]').offset().top
+            scrollTop: $('[name="' + $(this).attr('href').substr(1) + '"]').offset().top
         }, 500);
         return false;
     });
     $("#logo-img").on("click", function(){
         window.location = "http://where-am-i.co.uk/";
     });
-});
+	
+	// maps
+	var infowindow = null;
+	var infowindow1 = null;
+	var sitesSchool = [];
+	var sitesFire = [];
 
-$.getJSON("http://www.uk-postcodes.com/postcode/" + postcode.split(" ")[0] + postcode.split(" ")[1] + ".json?callback=?", function(data){
-    var latitude = data.geo.lat,
-        longitude = data.geo.lng,
-        easting = data.geo.easting,
-        northing = data.geo.northing;
-    
-    //fire data
-    $.getJSON("http://www.surreyopendata.org/resource/avf7-rxfg.json", function(_data){
-        var imgsrc = "http://maps.googleapis.com/maps/api/staticmap?center=" + encodeURIComponent(postcode) + "&sensor=false&zoom=10&size=600x300&maptype=roadmap&markers=color:blue%7Clabel:ab%7C" + encodeURIComponent(postcode) + "&markers=color:red%7Clabel:F";
-        
-        for(var i = 0; i<50; i++){
-            imgsrc += "%7C" + _data[i].location_1.latitude + "," + _data[i].location_1.longitude;
-        }
-        
-        $("#fire img").attr("src", imgsrc)
-        $("#fire a:last-child").attr("href", imgsrc)
-    });
-    
-    //school data
-    $.getJSON("http://www.surreyopendata.org/resource/2ami-xnhh.json", function(_data){
-        var imgsrc = "http://maps.googleapis.com/maps/api/staticmap?center=" + encodeURIComponent(postcode) + "&sensor=false&zoom=12&size=600x300&maptype=roadmap&markers=color:blue%7Clabel:ab%7C" + encodeURIComponent(postcode),
-            ol = $("#ofsted ol"),
-            alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ",
-            j = -1;
-        
-        for(var i = 0; i < _data.length; i++){
-            var sch = _data[i];
-            
-            if(sch.easting.substring(0,2) === easting.substring(0,2) && sch.northing.substring(0,2) === northing.substring(0,2) && j<25){
-                j++;
-                imgsrc += "&markers=color:green%7Clabel:" + alphabet[j] + "%7C" + sch.location_1.latitude + "," + sch.location_1.longitude;
-                ol.append("<li><b>" + alphabet[j] + ":</b> <a href='http://www.ofsted.gov.uk/inspection-reports/find-inspection-report/provider/ELS/" + sch.urn + "' target='_blank'>" + sch.fullname + "</a></li>");
-            }
-        }
-        
-        $("#school img").attr("src", imgsrc)
-        $("#school a:last-child").attr("href", imgsrc)
-    });
+	function setSchools(callback) {
+		$.getJSON("http://www.surreyopendata.org/resource/2ami-xnhh.json", function (_data) {
+			for (var i = 0; i < _data.length; i++) {
+				var lat = parseFloat(_data[i].location_1.latitude, 10) + 0.0005;
+				var lng = parseFloat(_data[i].location_1.longitude, 10) - 0.0015;
+				var name = _data[i].fullname;
+				var ofsted = "http://www.ofsted.gov.uk/inspection-reports/find-inspection-report/provider/ELS/" + _data[i].urn;
+				sitesSchool.push([lat, lng, name, ofsted]);
+				if ((i == _data.length - 1)) {
+					callback();
+				}
+			}
+		});
+	}
+
+	function setFires(callback) {
+		$.getJSON("http://www.surreyopendata.org/resource/avf7-rxfg.json?incidentcategory=fire", function (_data) {
+			for (var i = 0; i < _data.length; i++) {
+				var lat = parseFloat(_data[i].location_1.latitude, 10) + 0.0005;
+				var lng = parseFloat(_data[i].location_1.longitude, 10) - 0.0015;
+				var type = _data[i].propertycategory;
+				var ofsted = '';
+				var array = type.split(/(?=[A-Z])/);
+				if (array.length == 1) {
+					type = array[0];
+				} else {
+					type = array[0] + ' ' + array[1];
+				}
+				sitesFire.push([lat, lng, type, ofsted]);
+				if ((i == _data.length - 1)) {
+					callback();
+				}
+			}
+		});
+	}
+	var localSearch = new GlocalSearch();
+
+	function usePointFromPostcode(postcode, callbackFunction) {
+		localSearch.setSearchCompleteCallback(null, function () {
+			if (localSearch.results[0]) {
+				var resultLat = localSearch.results[0].lat;
+				var resultLng = localSearch.results[0].lng;
+				var point = new google.maps.LatLng(resultLat, resultLng);
+				callbackFunction(point);
+			}
+		});
+		localSearch.execute(postcode + ", UK");
+	}
+
+	function setMarkers(map, markers, icon) {
+		for (var i = 0; i < markers.length; i++) {
+			var sites = markers[i];
+			var siteLatLng = new google.maps.LatLng(sites[0], sites[1]);
+			var html = "<div class='marker-content'>" + sites[2];
+			if(sites[3] != '') {
+				html += " | <a href='" + sites[3] + "' target='_blank'>Ofsted</a>";
+			}
+			html += "</div>";
+			var marker = new google.maps.Marker({
+				position: siteLatLng,
+				map: map,
+				icon: icon,
+				html: html
+			});
+
+			var contentString = "Some content";
+
+			google.maps.event.addListener(marker, "click", function () {
+				infowindow.setContent(this.html);
+				infowindow.open(map, this);
+			});
+		}
+	}
+
+	function initialize(lat, lng) {
+		var mapOptions = {
+			center: new google.maps.LatLng(lat, lng),
+			zoom: 14
+		};
+		
+		var fires_map = new google.maps.Map(document.getElementById("fires-canvas"), mapOptions);
+		var schools_map = new google.maps.Map(document.getElementById("schools-canvas"), mapOptions);
+		
+		setSchools(function () {
+			infowindow = new google.maps.InfoWindow({
+				content: "loading..."
+			});
+			setMarkers(schools_map, sitesSchool, 'http://where-am-i.co.uk/img/school.png');
+		});
+		setFires(function () {
+			infowindow1 = new google.maps.InfoWindow({
+				content: "loading..."
+			});
+			setMarkers(fires_map, sitesFire, 'http://where-am-i.co.uk/img/fire.png');
+		});
+		var marker = new google.maps.Marker({
+			animation: google.maps.Animation.DROP,
+			position: new google.maps.LatLng(lat, lng),
+			map: fires_map
+		});
+		var marker = new google.maps.Marker({
+			animation: google.maps.Animation.DROP,
+			position: new google.maps.LatLng(lat, lng),
+			map: schools_map
+		});
+	}
+	google.maps.event.addDomListener(window, 'load', usePointFromPostcode(postcode, function (point) {
+		var lat = point.lat();
+		var lng = point.lng();
+		initialize(lat, lng);
+	}));
 });
