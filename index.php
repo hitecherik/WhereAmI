@@ -47,7 +47,7 @@
         <div class="footer">
             <div class="footer-wrap">
                 <p>Enter your postcode to get maps of recent fire incidents and crimes, schools, house prices and traffic fatalities and serious injuries. Only works in Surrey (so far).</p>
-                <p>Copyright &copy; Alexander Nielsen, Anand Aggarwal and Oliver Cole, 2013. Licensed under MIT License. <i><a href="thanks.html">This website wouldn't be possible without...</a></i></p>
+                <p>Copyright &copy; Alexander Nielsen, Anand Aggarwal and Oliver Cole, 2013. Licensed under <a href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International Licence</a>. <i><a href="thanks.html">This website wouldn't be possible without...</a></i></p>
         		<div class="social-buttons">
     		    	<table>
                         <tr>
