@@ -108,7 +108,7 @@ ol li:last-child:before {
     white-space:nowrap;
     font-weight: bold;
 }
-#ofsted a, .creators a, .libraries a, .footer-wrap a {
+.creators a, .libraries a, .footer-wrap a {
     color: #4d4dff;
     text-decoration: none;
     border-bottom: 1px dotted #4d4dff;
@@ -118,7 +118,7 @@ ol li:last-child:before {
 	-ms-transition: all 0.3s;
     transition: all 0.3s;
 }
-#ofsted a:hover, .creators a:hover, .libraries a:hover, .footer-wrap a:hover {
+.creators a:hover, .libraries a:hover, .footer-wrap a:hover {
     color: #0000b3;
     border-bottom-color: #0000b3;
 }
