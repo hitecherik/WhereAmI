@@ -98,7 +98,17 @@ ol li:last-child:before {
 .pure-grid:last-child {
     padding-left: 5px
 }
-#ofsted a, .creators a, .libraries a, .footer-wrap a {
+.interactive-map {
+	width: 100%;
+	height: 300px;
+}
+.marker-content {
+    line-height:1.35;
+    overflow:hidden;
+    white-space:nowrap;
+    font-weight: bold;
+}
+.creators a, .libraries a, .footer-wrap a {
     color: #4d4dff;
     text-decoration: none;
     border-bottom: 1px dotted #4d4dff;
@@ -108,7 +118,7 @@ ol li:last-child:before {
 	-ms-transition: all 0.3s;
     transition: all 0.3s;
 }
-#ofsted a:hover, .creators a:hover, .libraries a:hover, .footer-wrap a:hover {
+.creators a:hover, .libraries a:hover, .footer-wrap a:hover {
     color: #0000b3;
     border-bottom-color: #0000b3;
 }

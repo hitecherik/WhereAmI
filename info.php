@@ -30,12 +30,9 @@
     
     $uk_postcodes = simplexml_load_file("http://www.openlylocal.com/areas/postcodes/" . str_replace(" ", "%20", $postcode) . ".xml");
 	$district = str_replace("And", "and", ucwords($uk_postcodes->ward->council->{"normalised-title"}));
+	$districts = array( "Elmbridge", "Epsom and Ewell", "Guildford", "Mole Valley", "Reigate and Banstead", "Runnymede", "Spelthorne", "Surrey Heath", "Tandridge", "Waverley", "Woking");
     
-    $surrey = true;
-    
-    /* if($uk_postcodes->administrative->county->title!="Surrey"){
-        $surrey = false;
-    } */
+    $surrey = in_array($district, $districts);
     
     $result = mysqli_query($con, "SELECT * FROM traffic WHERE Name = \"$district\"");
     $cars = "";
@@ -69,9 +66,12 @@
         <link href="css/lightbox.css" rel="stylesheet" />
         <title><?php echo $postcode; ?> Information</title>
         
-        <?php
-            echo "<script>var postcode = '$postcode';</script>";
-        ?>
+		<!-- scripts -->
+		<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBO7WcmxkyuFZupdLOI9tPZNHAPhBLyL5E&sensor=true"></script>
+		<script src="http://www.google.com/uds/api?file=uds.js&v=1.0"></script>
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+        <?php echo "<script>var postcode = '$postcode';</script>"; ?>
+        <script src='js/script.js'></script>
     </head>
     <body>
         <div class='navbar'>
@@ -84,8 +84,8 @@
                 <?php
                     if($surrey){
                 ?>
-                <a href="#traffic">Traffic</a>
-                <a href="#housing">Housing</a>
+					<a href="#traffic">Traffic</a>
+					<a href="#housing">Housing</a>
                 <?php
                     }
                 ?>
@@ -97,7 +97,7 @@
             <?php
                 if(!$surrey){
             ?>
-            <div class="error-bubble">Your postcode is not in Surrey. Some features may not work as you would expect them to.</div>
+				<div class="error-bubble">Your postcode is not in Surrey. Some features may not work as you would expect them to.</div>
             <?php
                 }
             ?>
@@ -107,7 +107,7 @@
             <div class="fires-crimes pure-g-r">
                 <div class="pure-u-1-2 pure-grid" id="fire">
                     <h3>Nearest fire incidents</h3>
-                    <a href="img/image-1.jpg" data-lightbox="image-1" title=""><img src="http://placehold.it/600x300&text=Loading..." alt=""></a>
+                    <div id="fires-canvas" class="interactive-map"></div>
                 </div>
                 <div class="pure-u-1-2 pure-grid" id="crime">
                     <h3>Nearest crimes</h3>
@@ -118,50 +118,43 @@
             <?php
                 if($surrey){
             ?>
-            <div class="house-traffic pure-g-r">
-                <div class="pure-u-1-2 pure-grid" id="housing">
-                    <h3>Average House Prices</h3>
-                    <table class="pure-table housing-table">
-                        <thead>
-                            <tr><th>Surrey</th><th>£318,000</th></tr>
-                        </thead>
-                        <tbody>
-                            <tr><td><?php echo $district; ?></td><td><?php echo $price; ?></td></tr>
-                        </tbody>
-                    </table>
-                </div>
-                <div class="pure-u-1-2 pure-grid" id="traffic">
-                    <h3>Traffic Accidents</h3>
-                    <table class="pure-table traffic-table">
-                        <thead>
-                            <tr><th>Mode of Transport</th><th>Fatalities/Serious Injuries</th></tr>
-                        </thead>
-                        <tbody>
-                            <tr><td>Car Occupants</td><td><?php echo $cars; ?></td></tr>
-                            <tr><td>Cyclists</td><td><?php echo $cyclists; ?></td></tr>
-                            <tr><td>Pedestrians</td><td><?php echo $pedestrians; ?></td></tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-            
+				<div class="house-traffic pure-g-r">
+					<div class="pure-u-1-2 pure-grid" id="housing">
+						<h3>Average House Prices</h3>
+						<table class="pure-table housing-table">
+							<thead>
+								<tr><th>Surrey</th><th>£318,000</th></tr>
+							</thead>
+							<tbody>
+								<tr><td><?php echo $district; ?></td><td><?php echo $price; ?></td></tr>
+							</tbody>
+						</table>
+					</div>
+					<div class="pure-u-1-2 pure-grid" id="traffic">
+						<h3>Traffic Accidents</h3>
+						<table class="pure-table traffic-table">
+							<thead>
+								<tr><th>Mode of Transport</th><th>Fatalities/Serious Injuries</th></tr>
+							</thead>
+							<tbody>
+								<tr><td>Car Occupants</td><td><?php echo $cars; ?></td></tr>
+								<tr><td>Cyclists</td><td><?php echo $cyclists; ?></td></tr>
+								<tr><td>Pedestrians</td><td><?php echo $pedestrians; ?></td></tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
             <?php
                 }
             ?>
             
             <div id="school">
                 <h3>Nearest schools</h3>
-                <p align="center"><a href="" data-lightbox="vjjvhjj" title=""><img src="http://placehold.it/600x300&text=Loading..." alt="" /></a></p>
-            </div>            
-            <div id="ofsted">
-                <h3>Schools' Ofsted Reports</h3>
-                <ol></ol>
+				<div id="schools-canvas" class="interactive-map"></div>
             </div>
         </div>
         
         <!-- scripts -->
-        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-        <script src='js/script.js'></script>
         <script src="js/lightbox-2.6.min.js"></script>
     </body>
 </html>
