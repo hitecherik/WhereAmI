@@ -1,133 +1,102 @@
 $(window).load(function () {
 	// navbar
-    $('.nav-container').width($('.container').width());
-    if($(window).scrollTop() > 0) {
-        if ($('.navbar').width() === $(window).width()) {
-                $('.navbar').stop();
-                $('.navbar').css({
-                    'padding': '0'
-                });
-                $('.navbar').animate({
-                    'width': '65px',
-                    'position': 'fixed',
-                    'top': '0',
-                    'left': '0'
-                }, 'linear');
-                $('.navbar a:not(.hidden:nth-child(1))').css({
-                    'display': 'none'
-                });
-                $('.navbar #logo-img').hide();
-                $('.navbar a:nth-child(1)').css({
-                    'display': 'inline-block'
-                });
-                $('.navbar div:nth-child(2)').css({
-                    'z-index': '1'
-                });
-            }
-    }
-    $(window).scroll(function () {
-            if ($(window).width() <= 401) {
-    } else if($(window).width() > 401) {
-        if ($(window).scrollTop() >= 1) {
-            if ($('.navbar').width() === $(window).width()) {
-                $('.navbar').stop();
-                $('.navbar').css({
-                    'padding': '0'
-                });
-                $('.navbar').animate({
-                    'width': '65px',
-                    'position': 'fixed',
-                    'top': '0',
-                    'left': '0'
-                }, 'linear');
-                $('.navbar a:not(.hidden:nth-child(1))').css({
-                    'display': 'none'
-                });
-                $('.navbar #logo-img').hide();
-                $('.navbar a:nth-child(1)').css({
-                    'display': 'inline-block'
-                });
-                $('.navbar div:nth-child(2)').css({
-                    'z-index': '1'
-                });
-            }
-        } else if ($(window).scrollTop() <= 0) {
-                    $('.navbar').stop();
-        $('.navbar').animate({
-            'position': 'static',
-            'width': '100%'
-        });
-        $('.navbar a:not(.hidden:nth-child(1)):not(.hidden)').css({
-            'display': 'inline-block'
-        });
-        $('.navbar #logo-img').show();
-        $('.navbar a.hidden:nth-child(1)').hide();
-        }
-                $('.navbar div:nth-child(2)').css(
-                    'z-index', '-200000000'
-                );
-    }
-    });
-    $('.navbar a.hidden:nth-child(1)').click(function () {
-        $('.navbar').stop();
-        $('.navbar').animate({
-            'position': 'static',
-            'width': '100%'
-        });
-        $('.navbar a:not(.hidden:nth-child(1))').css({
-            'display': 'inline-block'
-        });
-        $('.navbar #logo-img').show();
-        $(this).hide();
-    });
-    $('.navbar a.hidden:last-child').click(function () {
-        $('.navbar').stop();
-        $('.navbar').css({
-            'padding': '0'
-        });
-        $('.navbar').animate({
-            'width': '65px',
-            'position': 'fixed',
-            'top': '0',
-            'left': '0'
-        }, 'linear');
-        $('.navbar a:not(.hidden:nth-child(1))').css({
-            'display': 'none'
-        });
-        $('.navbar a:first-child').css({
-            'display': 'inline-block'
-        });
-        $(this).hide();
-        $('.navbar #logo-img').hide();
-    });
-    $('.navbar a.hidden:last-child').click(function () {
-        $('.navbar').stop();
-        $('.navbar').css({
-            'padding': '0'
-        });
-        $('.navbar').animate({
-            'width': '65px',
-            'position': 'fixed',
-            'top': '0',
-            'left': '0'
-        }, 'linear');
-        $('.navbar a:not(.hidden:nth-child(1))').css({
-            'display': 'none'
-        });
-        $('.navbar a:first-child').css({
-            'display': 'inline-block'
-        });
-        $(this).hide();
-    });
-    $('a').click(function(){
-        $('html, body').animate({
-            scrollTop: $('[name="' + $(this).attr('href').substr(1) + '"]').offset().top
-        }, 500);
-        return false;
-    });
-    $("#logo-img").on("click", function(){
-        window.location = "http://where-am-i.co.uk/";
-    });
+    function scollTop(clickedElement, callback) {
+		e = clickedElement;
+		$offset = document.getElementsByName(e.getAttribute("href").substring(1, e.href.length))[0].offsetTop - 50;
+		if (self.pageYOffset != $offset) {
+			if (self.pageYOffset < $offset) {
+				alert('hi');
+				g = window.setInterval(function () {
+					if (self.pageYOffset < $offset) {
+						window.scollTo(self.pageYOffset + 10);
+					} else {
+						g = window.clearInterval(g);
+					}
+				}, 5);
+			} else if (self.pageYOffset > $offset) {
+
+			}
+		}
+	}
+	var $navbar = document.getElementById('navbar');
+	var $navItems = document.getElementById('nav-items');
+	var $more = document.getElementById('more');
+	var $responsive = document.getElementById('responsive');
+	$more.onclick = function () {
+		if ($responsive.style.display != 'block') {
+			$responsive.style.display = 'block';
+		} else {
+			$responsive.style.display = 'none';
+		}
+	};
+	window.setInterval(function () {
+		if ($navbar.offsetWidth <= 400) {
+			$navbar.style.position = 'static';
+			$navItems.style.display = 'none';
+			$more.style.display = 'inline-block';
+		} else {
+			$responsive.style.display = 'none';
+			$navbar.style.position = 'fixed';
+			$navItems.style.display = 'inline-block';
+			$more.style.display = 'none';
+		}
+	}, 1);
+	var $a = navbar.getElementsByTagName('a');
+	for (i = 0; i < $a.length; i++) {
+		$a[i].onclick = function (e) {
+			e.preventDefault();
+			if (this.id != 'more-link') {
+				if (this.getAttribute("href").length !== 0) {
+					if (navbar.style.position != 'static') {
+						$offset = document.getElementsByName(this.getAttribute("href").substring(1, this.href.length))[0].offsetTop - 50;
+					} else {
+						$offset = document.getElementsByName(this.getAttribute("href").substring(1, this.href.length))[0].offsetTop - 10;
+					}
+					if (self.pageYOffset != $offset) {
+						if (self.pageYOffset < $offset) {
+							d = window.setInterval(function () {
+								$scroll = self.pageYOffset;
+								if (self.pageYOffset < $offset) {
+									$scroll += 10;
+									window.scrollTo(0, $scroll);
+								} else {
+									d = window.clearInterval(d);
+								}
+							}, 1);
+							n = window.setInterval(function () {
+								$scroll = self.pageYOffset;
+								if (self.pageYOffset < $offset) {
+									$scroll += 10;
+									window.scrollTo(0, $scroll);
+								} else {
+									n = window.clearInterval(n);
+								}
+							}, 1);
+						} else if (self.pageYOffset > $offset) {
+							u = window.setInterval(function () {
+								$scroll = self.pageYOffset;
+								if (self.pageYOffset > $offset) {
+									$scroll -= 10;
+									window.scrollTo(0, $scroll);
+								} else {
+									u = window.clearInterval(u);
+								}
+							}, 1);
+							p = window.setInterval(function () {
+								$scroll = self.pageYOffset;
+								if (self.pageYOffset > $offset) {
+									$scroll -= 10;
+									window.scrollTo(0, $scroll);
+								} else {
+									p = window.clearInterval(p);
+								}
+							}, 1);
+						}
+					}
+				}
+			}
+		};
+	}
 	
 	// maps
 	var infowindow = null;

@@ -74,24 +74,55 @@
         <script src='js/script.js'></script>
     </head>
     <body>
-        <div class='navbar'>
-            <div class='logo'><a href="index.php" id="logo-link"><img src='img/navbar-logo.png' alt='' width="48px" id="logo-img" /></a></div>
-            <div align='center'>
-                <a class='hidden'>Menu</a>
-                <a href='#fire'>Fires</a>
-                <a href='#crime'>Crimes</a>
-                <a href='#school'>Schools</a>
-                <?php
-                    if($surrey){
-                ?>
-					<a href="#traffic">Traffic</a>
-					<a href="#housing">Housing</a>
-                <?php
-                    }
-                ?>
-                <a class='hidden hide'>Hide</a>
-            </div>
-        </div>
+        <div class='navbar' id='navbar'>
+			<div class='navbar-container'>
+				<a href='index.php' class='logo'><img src='http://where-am-i.co.uk/img/navbar-logo.png' alt="" /></a>
+				
+				<ul id='nav-items'>
+					<li> 
+						<a href='#fires'>Fires</a>
+					</li>
+					<li> 
+						<a href='#crimes'>Crimes</a>
+					</li>
+					<li> 
+						<a href='#schools'>Schools</a>
+					</li>
+					<?php if($surrey){ ?>
+						<li> 
+							<a href='#traffic'>Traffic</a>
+						</li>
+						<li> 
+							<a href='#housing'>Housing</a>
+						</li>
+					<?php } ?>
+				</ul>
+				<ul id='more'>
+					<li>
+						<a id='more-link'></a>
+					</li>
+				</ul>
+				<ul id='responsive'>
+					<li> 
+						<a href='#fires'>Fires</a>
+					</li>
+					<li> 
+						<a href='#crimes'>Crimes</a>
+					</li>
+					<li> 
+						<a href='#schools'>Schools</a>
+					</li>
+					<?php if($surrey){ ?>
+						<li> 
+							<a href='#traffic'>Traffic</a>
+						</li>
+						<li> 
+							<a href='#housing'>Housing</a>
+						</li>
+					<?php } ?>
+				</ul>
+			</div>
+		</div>
         
         <div class="wrap">
             <?php

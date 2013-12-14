@@ -1,3 +1,10 @@
+* {
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -o-box-sizing: border-box;
+    -ms-box-sizing: border-box;
+    box-sizing: border-box;
+}
 body, .footer-wrap {
     font-family: 'Cabin Condensed', sans-serif;
     width: 50%;
@@ -7,7 +14,7 @@ body, .footer-wrap {
     padding-bottom: 150px;
 }
 body:not(.index-html) {
-    padding-top: 60px;
+    padding-top: 40px;
     padding-bottom: 20px;
     text-align: left;
 }
@@ -85,13 +92,6 @@ ol li:last-child:after, .libraries li:last-child:after {
 ol li:last-child:before {
     content: 'and ';
 }
-.pure-grid {
-    -moz-box-sizing: border-box;
-    -webkit-box-sizing: border-box;
-    -o-box-sizing: border-box;
-    -ms-box-sizing: border-box;
-    box-sizing: border-box;
-}
 .pure-grid:first-child {
     padding-right: 5px
 }
@@ -133,64 +133,6 @@ ol li:last-child:before {
 .libraries li {
     display: inline;
 }
-a:not([href]) {
-    cursor: text
-}
-a.hidden {
-    cursor: pointer;
-}
-.navbar div:nth-child(2) {
-    margin: 0 auto;
-    position: relative;
-    z-index: -1;
-}
-.navbar div:nth-child(1) {
-    position: absolute;
-    top: 0;
-}
-.navbar a:not(#logo-link) {
-    text-decoration: none;
-    padding: 15px;
-    background-color: black;
-    color: white;
-}
-.navbar {
-    padding-top: 15px;
-    padding-bottom: 14px;
-    background-color: black;
-    white-space: nowrap;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    overflow: hidden;
-    z-index: 0;
-}
-.navbar a:not(#logo-link):hover {
-    background-color: white;
-    color: black;
-}
-.navbar a:not(#logo-link):not(:nth-child(2)):not(.hidden) {
-    margin-left: -8px;
-}
-.container {
-    background: white;
-    width: 400px;
-    margin: 0 auto;
-}
-.hidden {
-    display: none;
-}
-.navbar .hide {
-    right: 0;
-    position: absolute;
-}
-.navbar a {
-    cursor: pointer !important;
-}
-.navbar #logo-link {
-    z-index: 10;
-}
 .hasPlaceholder {
     color: #ccc;
     text-transform: none !important;
@@ -223,16 +165,11 @@ a.hidden {
     }
     body:not(.index-html){
         width: 100%;
-        padding: 60px 10px 0 10px;
+        padding: 0 10px;
     }
     .index-html {
         padding-top: 5px;
         padding-bottom: 0 !important;
-        -moz-box-sizing: border-box;
-        -webkit-box-sizing: border-box;
-        -o-box-sizing: border-box;
-        -ms-box-sizing: border-box;
-        box-sizing: border-box;
     }
     .footer {
         position: static;
@@ -246,9 +183,6 @@ a.hidden {
         padding-top: 0 !important;
         padding-bottom: 20px !important;
     }
-}
-.navbar {
-    z-index: 100 !important;
 }
 .google-logo-text, .twitter-logo, .facebook-logo-text {
     width: 30px;
@@ -290,4 +224,102 @@ a.hidden {
 }
 .house-traffic table {
 	width: 100%;
+}
+
+/* navbar */
+.navbar *, .navbar {
+    height: 40px;
+}
+.navbar {
+    top: 0;
+    background: url(http://www.cole2.com/ollie/funnyfails/black-navbar-background.png);
+    position: fixed;
+    background-size: 100% 100%;
+    width: 100%;
+    left: 0;
+    background-repeat: repeat-x;
+    right: 0;
+    text-align: center;
+}
+.navbar ul {
+    display: inline-block;
+}
+.logo {
+    position: absolute;
+    left: 0;
+}
+.navbar ul li {
+    position: relative;
+    color: white;
+    list-style: none;
+    display: block;
+    float: left;
+}
+.navbar ul a {
+    color: white;
+    -webkit-transition-property: box-shadow, background-color, background-position;
+    -moz-transition-property: box-shadow, background-color, background-position;
+    -o-transition-property: box-shadow, background-color, background-position;
+    -ms-transition-property: box-shadow, background-color, background-position;
+    transition-property: box-shadow, background-color, background-position;
+    -webkit-transition-duration: 0.2s;
+    -moz-transition-duration: 0.2s;
+    -o-transition-duration: 0.2s;
+    -ms-transition-duration: 0.2s;
+    transition-duration: 0.2s;
+    -webkit-transition-timing-function: linear;
+    -moz-transition-timing-function: linear;
+    -o-transition-timing-function: linear;
+    -ms-transition-timing-function: linear;
+    transition-timing-function: linear;
+    -webkit-transition-delay: initial, initial, initial;
+    -moz-transition-delay: initial, initial, initial;
+    -o-transition-delay: initial, initial, initial;
+    -ms-transition-delay: initial, initial, initial;
+    transition-delay: initial, initial, initial;
+    padding: 10px;
+    background-size: 100% 100%;
+    display: block;
+    float: left;
+    background-color: #111;
+    background-repeat: repeat-x;
+    background-image: url(http://www.cole2.com/ollie/funnyfails/black-navbar-background.png);
+}
+.navbar ul a:hover {
+    background-position: 0 -40px;
+}
+.navbar-container {
+    position: relative;
+}
+.navbar ul ul {
+    display: none;
+    position: absolute;
+    top: 100%;
+}
+.navbar ul ul li {
+    float: none;
+}
+#responsive {
+    display: none;
+    height: auto;
+    margin-top: -4px;
+}
+.navbar ul ul a {
+    float: none;
+    text-align: left;
+}
+.navbar ul li:hover > ul {
+    display: block;
+}
+#more a {
+    background: url(http://www.cole2.com/ollie/funnyfails/navbar-more.png);
+    background-size: 100% 100%;
+    width: 30px;
+}
+#more {
+    display: none;
+}
+#responsive li, #responsive a {
+    float: none;
+    width: 100%;
 }
